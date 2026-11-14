@@ -1,0 +1,22 @@
+[Unit]
+Description=NEXT WEALTH
+After=network.target
+
+[Service]
+Type=simple
+User=opc
+Group=opc
+WorkingDirectory=/srv/nextwealth
+Environment=NEXTWEALTH_BASE=/nextwealth/
+ExecStart=/usr/bin/php -S 127.0.0.1:8124 -t showroom showroom/index.php
+Restart=on-failure
+RestartSec=2
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/nextwealth
+
+[Install]
+WantedBy=multi-user.target
